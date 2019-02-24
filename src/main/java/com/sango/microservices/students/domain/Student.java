@@ -3,6 +3,10 @@ package com.sango.microservices.students.domain;
 import java.io.Serializable;
 import java.util.UUID;
 
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
+
+@Table("student")
 public class Student implements Serializable{
 	
 	/**
@@ -10,6 +14,7 @@ public class Student implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@PrimaryKey
 	private UUID id;
 	private String name;
 	private String dob;

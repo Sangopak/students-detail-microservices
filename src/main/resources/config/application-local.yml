@@ -3,6 +3,12 @@ spring:
     name: student-detail-service
   profiles:
     active: local  
+  data:
+    cassandra:
+      contact-points:
+      - 192.168.99.100
+      keyspace-name: student_keyspace
+      port: 9042
 server:
   servlet:
     context-path: /v1

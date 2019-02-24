@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: student-detail-service
+  profiles:
+    active: local  
+server:
+  servlet:
+    context-path: /v1
+  port: 8080
+ 

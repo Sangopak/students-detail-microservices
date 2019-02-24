@@ -24,9 +24,9 @@ public class StudentController {
 		List<Student> studentList = new ArrayList<Student>();
 		Student student1 = new Student(UUID.randomUUID(),"John Doe","2000-01-01","1 Main Street","Apt 1","Claymont","DE","19301","Math");
 		Student student2 = new Student(UUID.randomUUID(),"Jane Doe","2000-01-02","2 Main Street","Apt 2","Claymont","DE","19301","Math");
+		studentList = studentRepository.findAll();
 		studentList.add(student1);
 		studentList.add(student2);
-		//studentList = studentRepository.findAll();
 		return studentList;
 	}
 

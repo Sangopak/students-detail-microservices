@@ -3,10 +3,12 @@ package com.sango.microservices.students.domain;
 import java.io.Serializable;
 import java.util.UUID;
 
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.cql.Ordering;
+import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
+import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
-@Table("student")
+@Table(value="students")
 public class Student implements Serializable{
 	
 	/**
@@ -14,9 +16,11 @@ public class Student implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@PrimaryKey
+	@PrimaryKeyColumn(name="id",type=PrimaryKeyType.PARTITIONED)
 	private UUID id;
+	@PrimaryKeyColumn(name="name",type=PrimaryKeyType.CLUSTERED, ordering=Ordering.DESCENDING)
 	private String name;
+	@PrimaryKeyColumn(name="id",type=PrimaryKeyType.CLUSTERED)
 	private String dob;
 	private String street;
 	private String street2;

@@ -1,6 +1,7 @@
 package com.sango.microservices.students.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.data.cassandra.core.cql.Ordering;
@@ -20,8 +21,8 @@ public class Student implements Serializable{
 	private UUID id;
 	@PrimaryKeyColumn(name="name",type=PrimaryKeyType.CLUSTERED, ordering=Ordering.DESCENDING)
 	private String name;
-	@PrimaryKeyColumn(name="id",type=PrimaryKeyType.CLUSTERED)
-	private String dob;
+	@PrimaryKeyColumn(name="dob",type=PrimaryKeyType.CLUSTERED, ordering=Ordering.DESCENDING)
+	private Date dob;
 	private String street;
 	private String street2;
 	private String city;
@@ -33,7 +34,7 @@ public class Student implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Student(UUID id, String name, String dob, String street, String street2, String city, String state,
+	public Student(UUID id, String name, Date dob, String street, String street2, String city, String state,
 			String zip, String course) {
 		super();
 		this.id = id;
@@ -63,11 +64,11 @@ public class Student implements Serializable{
 		this.name = name;
 	}
 
-	public String getDob() {
+	public Date getDob() {
 		return dob;
 	}
 
-	public void setDob(String dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 

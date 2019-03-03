@@ -61,7 +61,7 @@ public class StudentController {
 				log.error("ERROR From loadStudents: {}, error message: {} ",loadStatus,e.getMessage());
 			}
 		} else {
-			loadStatus = "Data already present";
+			loadStatus = "Some Data already present";
 		}
 		return loadStatus;
 	}

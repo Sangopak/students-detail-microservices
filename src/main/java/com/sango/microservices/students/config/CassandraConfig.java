@@ -58,9 +58,10 @@ public class CassandraConfig extends AbstractCassandraConfiguration{
   public CassandraSessionFactoryBean session() {
     CassandraSessionFactoryBean session = new CassandraSessionFactoryBean();
     session.setCluster(cluster().getObject());
-    session.setKeyspaceName(keyspace);
+    session.setKeyspaceName(getKeyspaceName());
     session.setConverter(converter());
     session.setSchemaAction(SchemaAction.NONE);
+    log.debug("From CassandraSessionFactoryBean Cassandra Loaded successfully");
     return session;
   }
 

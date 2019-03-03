@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: student-detail-service
+  cloud:
+    config:
+      uri: http://localhost:8888
+server:
+  servlet:
+    context-path: /v1
+  port: 8080
+ 

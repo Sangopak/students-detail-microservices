@@ -39,7 +39,7 @@ public class StudentController {
 			log.error("From getAllStudents "+CommonConstant.NO_STUDENT_FOUND);
 			throw new NoStudentFoundException(CommonConstant.NO_STUDENT_FOUND);
 		}
-		log.debug("From getAllStudents total student count {} ",studentList.size());
+		log.info("From getAllStudents total student count {} ",studentList.size());
 		return studentList;
 	}
 	
@@ -50,7 +50,7 @@ public class StudentController {
 			log.error("From getStudentById "+CommonConstant.STUDENT_NOT_FOUND+" {} "+id);
 			throw new StudentNotFoundException(CommonConstant.STUDENT_NOT_FOUND+id);
 		}
-		log.debug("From getStudentById student found with id {} ",id);
+		log.info("From getStudentById student found with id {} ",id);
 		return resultStudent;
 	}
 	

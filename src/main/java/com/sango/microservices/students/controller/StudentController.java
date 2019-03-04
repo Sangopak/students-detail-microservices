@@ -5,18 +5,23 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.datastax.driver.core.utils.UUIDs;
 import com.sango.microservices.students.domain.Student;
+import com.sango.microservices.students.exception.NoStudentFoundException;
+import com.sango.microservices.students.exception.StudentNotFoundException;
 import com.sango.microservices.students.repository.StudentRepository;
+import com.sango.microservices.students.util.CommonConstant;
 
 @RestController
 @RequestMapping(path="/api/")
@@ -30,8 +35,23 @@ public class StudentController {
 	@GetMapping(path="/students", produces="application/json")
 	public List<Student> getAllStudents(){
 		List<Student> studentList = studentRepository.findAll();
-		log.debug("From getAllStudents");
+		if(studentList.isEmpty()) {
+			log.error("From getAllStudents "+CommonConstant.NO_STUDENT_FOUND);
+			throw new NoStudentFoundException(CommonConstant.NO_STUDENT_FOUND);
+		}
+		log.debug("From getAllStudents total student count {} ",studentList.size());
 		return studentList;
+	}
+	
+	@GetMapping(path="/students/{id}",produces="application/json")
+	public Optional<Student> getStudentById(@PathVariable String id) {
+		Optional<Student> resultStudent = studentRepository.findById(UUID.fromString(id));
+		if (!resultStudent.isPresent()) {
+			log.error("From getStudentById "+CommonConstant.STUDENT_NOT_FOUND+" {} "+id);
+			throw new StudentNotFoundException(CommonConstant.STUDENT_NOT_FOUND+id);
+		}
+		log.debug("From getStudentById student found with id {} ",id);
+		return resultStudent;
 	}
 	
 	@GetMapping(path="/load/students")

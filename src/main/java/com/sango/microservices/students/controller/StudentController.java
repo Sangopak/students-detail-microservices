@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,13 @@ import com.sango.microservices.students.exception.StudentNotFoundException;
 import com.sango.microservices.students.repository.StudentRepository;
 import com.sango.microservices.students.util.CommonConstant;
 
+@Slf4j
 @RestController
 @RequestMapping(path="/api/")
 public class StudentController {
-	
-	private static final Logger log = LoggerFactory.getLogger(StudentController.class);
-	
+
 	@Autowired
-	StudentRepository studentRepository;
+	private StudentRepository studentRepository;
 	
 	@GetMapping(path="/students", produces="application/json")
 	public List<Student> getAllStudents(){

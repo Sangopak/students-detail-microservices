@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.sango.microservices.students.domain.StudentResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,14 +36,16 @@ public class StudentController {
 	
 	@GetMapping(path="/students", produces="application/json")
 	@PreAuthorize("#oauth2.hasScope('read')")
-	public List<Student> getAllStudents(){
+	public StudentResponse getAllStudents(){
+		StudentResponse studentResponse = new StudentResponse();
 		List<Student> studentList = studentRepository.findAll();
 		if(studentList.isEmpty()) {
 			log.error("From getAllStudents "+CommonConstant.NO_STUDENT_FOUND);
 			throw new NoStudentFoundException(CommonConstant.NO_STUDENT_FOUND);
 		}
 		log.info("From getAllStudents total student count {} ",studentList.size());
-		return studentList;
+		studentResponse.setStudents(studentList);
+		return studentResponse;
 	}
 	
 	@GetMapping(path="/students/{id}",produces="application/json")

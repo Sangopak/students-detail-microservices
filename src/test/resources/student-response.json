@@ -1,0 +1,26 @@
+{
+  "students": [
+    {
+      "id": "ef4713f3-8031-454b-996e-9fc2338cbd2c",
+      "name": "Jane Doe",
+      "dob": "2001-12-30T05:00:00.000+0000",
+      "street": "2 Main Street",
+      "street2": "Apt 2",
+      "city": "Claymont",
+      "state": "DE",
+      "zip": "19301",
+      "course": "Math"
+    },
+    {
+      "id": "fcdd51b7-bf3c-448e-8a19-9d1f20e2dc12",
+      "name": "John Doe",
+      "dob": "2000-12-31T05:00:00.000+0000",
+      "street": "1 Main Street",
+      "street2": "Apt 1",
+      "city": "Claymont",
+      "state": "DE",
+      "zip": "19301",
+      "course": "Math"
+    }
+  ]
+}

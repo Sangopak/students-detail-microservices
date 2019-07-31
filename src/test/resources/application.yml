@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: student-detail-service
+  profiles:
+    active: local
+  data:
+    cassandra:
+      contact-points: 127.0.0.1
+      keyspace-name: student_keyspace
+      port: 9042
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+server:
+  servlet:
+    context-path: /v1

@@ -17,7 +17,7 @@ public class OauthResourceConfiguration extends GlobalMethodSecurityConfiguratio
     public RemoteTokenServices tokenServices() {
         RemoteTokenServices remoteTokenServices = new RemoteTokenServices();
         remoteTokenServices.setCheckTokenEndpointUrl("http://localhost:9090/spring-security-oauth-server/oauth/check_token");
-        remoteTokenServices.setClientId("barClientIdPassword");
+        remoteTokenServices.setClientId("studentProtectedResourceClientIdPassword");
         remoteTokenServices.setClientSecret("secret");
         return remoteTokenServices;
     }
